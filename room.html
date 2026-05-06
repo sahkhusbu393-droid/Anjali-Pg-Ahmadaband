@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Anjli Girls PG | Rooms</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <style>
+      /* RESET */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        background: #faf7fb;
+        color: #333;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+      }
+      :root {
+        --pink: #ff4081;
+        --orange: #ff9800;
+        --purple: #9c27b0;
+        --grad: linear-gradient(
+          90deg,
+          var(--pink),
+          var(--orange),
+          var(--purple)
+        );
+      }
+
+      /* HEADER */
+      header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 18px 8%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(12px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        z-index: 1000;
+        transition: all 0.4s;
+      }
+      header.shrink {
+        padding: 10px 8%;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+      .logo {
+        font-size: 24px;
+        font-weight: 700;
+        background: var(--grad);
+        -webkit-background-clip: text;
+        color: transparent;
+      }
+      nav a {
+        margin-left: 26px;
+        text-decoration: none;
+        color: #555;
+        font-weight: 500;
+        position: relative;
+      }
+      nav a:hover,
+      nav a.active {
+        color: var(--pink);
+      }
+      nav a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -6px;
+        width: 0;
+        height: 3px;
+        border-radius: 10px;
+        background: var(--grad);
+        transition: 0.4s;
+      }
+      nav a:hover::after,
+      nav a.active::after {
+        width: 100%;
+      }
+
+      /* HERO / PAGE TITLE */
+      .hero {
+        min-height: 40vh;
+        background: linear-gradient(135deg, #fff1f6, #f3e5f5);
+        padding: 120px 8% 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      .hero h1 {
+        text-align: center;
+        font-size: 48px;
+        color: var(--pink);
+      }
+      .hero p {
+        text-align: center;
+        font-size: 18px;
+        margin-top: 15px;
+        color: #555;
+        max-width: 700px;
+        line-height: 1.6;
+      }
+
+      /* ROOMS SECTION */
+      .rooms-wrap {
+        position: relative;
+        border-radius: 80px;
+        padding: 100px 40px;
+        overflow: hidden;
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(255, 64, 129, 0.15),
+            transparent 40%
+          ),
+          radial-gradient(
+            circle at bottom right,
+            rgba(156, 39, 176, 0.18),
+            transparent 40%
+          ),
+          linear-gradient(135deg, #fff1f6, #f3e5f5);
+        margin-bottom: 60px;
+      }
+      .rooms-wrap::before,
+      .rooms-wrap::after {
+        content: "";
+        position: absolute;
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        filter: blur(100px);
+        opacity: 0.35;
+        animation: float 10s infinite alternate ease-in-out;
+      }
+      .rooms-wrap::before {
+        background: #ff80ab;
+        top: -80px;
+        left: -80px;
+      }
+      .rooms-wrap::after {
+        background: #ce93d8;
+        bottom: -80px;
+        right: -80px;
+        animation-delay: 4s;
+      }
+      @keyframes float {
+        from {
+          transform: translateY(0);
+        }
+        to {
+          transform: translateY(-50px);
+        }
+      }
+
+      /* TITLE */
+      .title {
+        text-align: center;
+        font-size: 40px;
+        margin-bottom: 70px;
+        background: var(--grad);
+        -webkit-background-clip: text;
+        color: transparent;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: 0.8s ease-out;
+      }
+
+      /* ROOM CARDS */
+      .rooms {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 40px;
+      }
+      .room {
+        background: #fff;
+        border-radius: 34px;
+        padding: 50px 30px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08);
+        transition: 0.5s;
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      .room.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .room::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          120deg,
+          transparent,
+          rgba(255, 64, 129, 0.18),
+          transparent
+        );
+        transform: translateX(-100%);
+        transition: 0.6s;
+      }
+      .room h3{
+  margin:15px;
+  font-size:20px;
+}
+
+.room p{
+  margin:0 15px 20px;
+  color:#666;
+  line-height:1.5;
+}
+
+      .room:hover::before {
+        transform: translateX(100%);
+      }
+      .room:hover {
+        transform: translateY(-16px) scale(1.05);
+        box-shadow: 0 45px 90px rgba(156, 39, 176, 0.28);
+      }
+      .room img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:12px 12px 0 0;
+}
+
+      .price {
+        display: inline-block;
+        padding: 6px 18px;
+        border-radius: 20px;
+        background: linear-gradient(90deg, #ff80ab, #ce93d8);
+        color: #fff;
+        font-weight: 600;
+        box-shadow: 0 10px 25px rgba(255, 64, 129, 0.45);
+      }
+
+      /* FOOTER */
+      .footer {
+        background: #0f0f0f;
+        color: #ccc;
+        padding: 80px 8% 20px;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 50px;
+      }
+      .footer h3 {
+        font-size: 24px;
+        background: linear-gradient(90deg, #ff80ab, #ce93d8);
+        -webkit-background-clip: text;
+        color: transparent;
+      }
+      .footer h4 {
+        margin-bottom: 16px;
+        color: #fff;
+      }
+      .footer p,
+      .footer a {
+        font-size: 14px;
+        color: #bbb;
+        text-decoration: none;
+        line-height: 1.8;
+      }
+      .footer ul {
+        list-style: none;
+      }
+      .footer ul a:hover {
+        color: #ff80ab;
+      }
+      .footer i {
+        color: #ff80ab;
+        margin-right: 8px;
+      }
+      .social a {
+        display: inline-flex;
+        width: 42px;
+        height: 42px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.08);
+        margin-right: 10px;
+        transition: 0.4s;
+      }
+      .social a:hover {
+        background: linear-gradient(135deg, #ff80ab, #ce93d8);
+        transform: translateY(-6px);
+      }
+      .footer-bottom {
+        margin-top: 50px;
+        text-align: center;
+        font-size: 13px;
+        color: #777;
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 36px;
+        }
+        .hero p {
+          font-size: 16px;
+        }
+        .rooms-wrap {
+          padding: 50px 20px;
+        }
+        .title {
+          font-size: 32px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+          <img src="assets/images/logo.png" alt="" height="90px">
+
+      </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a class="active" href="rooms.html">Rooms</a>
+        <a href="facilities.html">Facilities</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <h1>Our Room Options</h1>
+        <p>Choose the perfect room for your comfort & privacy</p>
+      </div>
+    </section>
+
+    <!-- ROOMS -->
+  <section class="rooms-wrap">
+  <h2 class="title">Room Options</h2>
+
+  <div class="rooms">
+
+    <div class="room">
+      <img src="assets/images/pg1-img.jpeg" alt="Single Sharing Room">
+      <h3>Single Sharing Room</h3>
+      <p>Private and comfortable room ideal for individuals seeking peace and privacy.</p>
+    </div>
+
+    <div class="room">
+      <img src="assets/images/pg2-img.jpeg" alt="Double Sharing Room">
+      <h3>Double Sharing Room</h3>
+      <p>Spacious room with shared comfort, perfect for friends or working professionals.</p>
+    </div>
+
+    <div class="room">
+      <img src="assets/images/pg3-img.jpeg" alt="Fourth Sharing Room">
+      <h3>Four Sharing Room</h3>
+      <p>Affordable and well-maintained room with all essential amenities included.</p>
+    </div>
+
+  </div>
+</section>
+
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-grid">
+        <div>
+          <h3>Anjli Girls PG</h3>
+          <p>Safe & premium girls PG in Ahmedabad. A home away from home.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="rooms.html">Rooms</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <p><i class="fa-solid fa-location-dot"></i> Ahmedabad</p>
+          <p><i class="fa-solid fa-phone"></i> +91 9XXXXXXXXX</p>
+        </div>
+        <div>
+          <h4>Follow Us</h4>
+          <div class="social">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 Anjli Girls PG • Ahmedabad</div>
+    </footer>
+
+    <script>
+      // Header shrink
+      window.addEventListener("scroll", () => {
+        document
+          .querySelector("header")
+          .classList.toggle("shrink", window.scrollY > 80);
+
+        // Animate titles
+        document.querySelectorAll(".title").forEach((title) => {
+          const top = title.getBoundingClientRect().top;
+          if (top < window.innerHeight - 100) {
+            title.style.opacity = "1";
+            title.style.transform = "translateY(0)";
+          }
+        });
+
+        // Animate room cards
+        document.querySelectorAll(".room").forEach((room) => {
+          const top = room.getBoundingClientRect().top;
+          if (top < window.innerHeight - 80) {
+            room.classList.add("visible");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

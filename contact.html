@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Contact | Anjli Girls PG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #faf7fb;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    :root {
+      --pink: #ff4081;
+      --orange: #ff9800;
+      --purple: #9c27b0;
+      --grad: linear-gradient(90deg, var(--pink), var(--orange), var(--purple));
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 18px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      z-index: 1000;
+      transition: all 0.4s;
+    }
+
+    header.shrink {
+      padding: 10px 8%;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    nav a {
+      margin-left: 26px;
+      text-decoration: none;
+      color: #555;
+      font-weight: 500;
+      position: relative;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--pink);
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0;
+      height: 3px;
+      border-radius: 10px;
+      background: var(--grad);
+      transition: 0.4s;
+    }
+
+    nav a:hover::after,
+    nav a.active::after {
+      width: 100%;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 40vh;
+      background: linear-gradient(135deg, #fff1f6, #f3e5f5);
+      padding: 120px 8% 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      margin-top: 10px;
+      color: #555;
+    }
+
+    /* CONTACT SECTION */
+    .contact-wrap {
+      position: relative;
+      margin: 80px 6%;
+      padding: 90px 8%;
+      background: linear-gradient(135deg, #fff1f6, #f3e5f5);
+      border-radius: 80px;
+      overflow: hidden;
+      transform: skewY(-3deg);
+    }
+
+    .contact-inner {
+      transform: skewY(3deg);
+    }
+
+    .contact-wrap::before,
+    .contact-wrap::after {
+      content: "";
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: .4;
+    }
+
+    .contact-wrap::before {
+      background: #ff80ab;
+      top: -100px;
+      left: -80px;
+    }
+
+    .contact-wrap::after {
+      background: #ce93d8;
+      bottom: -100px;
+      right: -80px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+    }
+
+    /* INFO */
+    .contact-info h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .contact-info p {
+      color: #555;
+      margin-bottom: 25px;
+      line-height: 1.7;
+    }
+
+    .contact-info i {
+      color: var(--pink);
+      margin-right: 10px;
+    }
+
+    .contact-info div {
+      margin-bottom: 15px;
+      font-size: 15px;
+    }
+
+    /* FORM */
+    form {
+      background: #fff;
+      padding: 40px;
+      border-radius: 30px;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, .1);
+    }
+
+    form h3 {
+      text-align: center;
+      margin-bottom: 30px;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .input-box {
+      margin-bottom: 18px;
+    }
+
+    .input-box input,
+    .input-box textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 30px;
+      border: 1px solid #ddd;
+      outline: none;
+      font-size: 14px;
+    }
+
+    .input-box textarea {
+      resize: none;
+      height: 120px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 40px;
+      background: var(--grad);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: .4s;
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(156, 39, 176, .4);
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: #0f0f0f;
+      color: #ccc;
+      padding: 80px 8% 20px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 50px;
+    }
+
+    .footer h3 {
+      font-size: 24px;
+      background: linear-gradient(90deg, #ff80ab, #ce93d8);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .footer h4 {
+      margin-bottom: 16px;
+      color: #fff;
+    }
+
+    .footer p,
+    .footer a {
+      font-size: 14px;
+      color: #bbb;
+      text-decoration: none;
+      line-height: 1.8;
+    }
+
+    .footer ul {
+      list-style: none;
+    }
+
+    .footer ul a:hover {
+      color: #ff80ab;
+    }
+
+    .footer i {
+      color: #ff80ab;
+      margin-right: 8px;
+    }
+
+    .social a {
+      display: inline-flex;
+      width: 42px;
+      height: 42px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      margin-right: 10px;
+      transition: 0.4s;
+    }
+
+    .social a:hover {
+      background: linear-gradient(135deg, #ff80ab, #ce93d8);
+      transform: translateY(-6px);
+    }
+
+    .footer-bottom {
+      margin-top: 50px;
+      text-align: center;
+      font-size: 13px;
+      color: #777;
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:900px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <img src="assets/images/logo.png" alt="" height="90px">
+
+    </div>
+    <nav>
+      <a class="active" href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="room.html">Rooms</a>
+      <a href="facilities.html">Facilities</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <h1>Contact Us</h1>
+      <p>We are happy to help you – Feel Like Home 🏠</p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-wrap">
+    <div class="contact-inner">
+      <div class="contact-grid">
+
+        <!-- INFO -->
+        <div class="contact-info">
+          <h2>Get In Touch</h2>
+          <p>Looking for a safe & comfortable Girls PG in Ahmedabad?
+            Just send us a message – we’ll get back quickly 💕</p>
+
+          <div><i class="fa-solid fa-location-dot"></i> C_3.flat no _9.shitlam apartment. opp. Jai hind sweet.
+            Panjrapole char Rasta.iim road Danny's coffee bar</div>
+          <div><i class="fa-solid fa-phone"></i> +91 70160 23768</div>
+          <div><i class="fa-solid fa-envelope"></i> kkrishan127@gmail.com</div>
+        </div>
+
+        <!-- FORM -->
+        <form action="https://formspree.io/f/XXXXABCD" method="POST">
+          <h3>Send Message</h3>
+
+          <div class="input-box">
+            <input type="text" name="name" placeholder="Your Name" required>
+          </div>
+
+          <div class="input-box">
+            <input type="email" name="email" placeholder="Your Email" required>
+          </div>
+
+          <div class="input-box">
+            <input type="text" name="phone" placeholder="Phone Number">
+          </div>
+
+          <div class="input-box">
+            <textarea name="message" placeholder="Your Message"></textarea>
+          </div>
+
+          <button type="submit">Send Message</button>
+        </form>
+
+      </div>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <h3>Anjli Girls PG</h3>
+        <p>Safe & premium girls PG in Ahmedabad. A home away from home.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="room.html">Rooms</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p><i class="fa-solid fa-location-dot"></i> Ahmedabad</p>
+        <p><i class="fa-solid fa-phone"></i> +91 70160 23768</p>
+      </div>
+      <div>
+        <h4>Follow Us</h4>
+        <div class="social">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Anjli Girls PG • Ahmedabad</div>
+  </footer>
+</body>
+
+</html>

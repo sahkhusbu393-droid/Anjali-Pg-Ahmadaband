@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Anjli Girls PG | Facilities</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background: #fff;
+        color: #333;
+      }
+
+      /* ================= HEADER ================= */
+      header {
+        width: 100%;
+        position: sticky;
+        top: 0;
+        background: #fff;
+        z-index: 999;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .nav {
+        max-width: 1200px;
+        margin: auto;
+        padding: 15px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .logo {
+        font-size: 24px;
+        font-weight: 600;
+        background: linear-gradient(45deg, #ff4d8d, #ff9800, #8e24aa);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .nav ul {
+        list-style: none;
+        display: flex;
+        gap: 25px;
+      }
+
+      .nav a {
+        text-decoration: none;
+        color: #444;
+        font-weight: 500;
+        position: relative;
+      }
+
+      .nav a.active,
+      .nav a:hover {
+        color: #e91e63;
+      }
+
+      .nav a.active::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -6px;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(45deg, #ff4d8d, #ff9800);
+        border-radius: 10px;
+      }
+
+      /* ================= HERO ================= */
+      .hero {
+        min-height: 60vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 60px 20px;
+        background:
+          linear-gradient(
+            135deg,
+            rgba(255, 77, 141, 0.85),
+            rgba(255, 152, 0, 0.85),
+            rgba(142, 36, 170, 0.85)
+          ),
+          url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c")
+            center/cover no-repeat;
+        color: #fff;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+        margin-bottom: 10px;
+      }
+
+      .hero p {
+        font-size: 18px;
+        opacity: 0.95;
+      }
+
+      /* ================= SLOPED FACILITIES ================= */
+      .slanted-bg {
+        position: relative;
+        padding: 140px 8% 120px;
+        background: linear-gradient(
+          165deg,
+          #fff1f6 0%,
+          #f3e5f5 40%,
+          #ffffff 100%
+        );
+        clip-path: polygon(0 6%, 100% 0, 100% 94%, 0 100%);
+        overflow: hidden;
+      }
+
+      /* floating blobs */
+      .slanted-bg::before,
+      .slanted-bg::after {
+        content: "";
+        position: absolute;
+        width: 320px;
+        height: 320px;
+        border-radius: 50%;
+        filter: blur(120px);
+        opacity: 0.35;
+      }
+
+      .slanted-bg::before {
+        background: #ff80ab;
+        top: -100px;
+        left: -120px;
+      }
+
+      .slanted-bg::after {
+        background: #ce93d8;
+        bottom: -120px;
+        right: -100px;
+      }
+
+      .slanted-bg > * {
+        position: relative;
+        z-index: 2;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 34px;
+        margin-bottom: 50px;
+        background: linear-gradient(45deg, #ff4d8d, #ff9800, #8e24aa);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* ================= FACILITY CARDS ================= */
+      .facilities {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 30px;
+      }
+
+      .card {
+        background: #fff;
+        padding: 35px 25px;
+        border-radius: 18px;
+        text-align: center;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        transition: 0.4s;
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      .card i {
+        font-size: 36px;
+        margin-bottom: 15px;
+        background: linear-gradient(45deg, #ff4d8d, #ff9800, #8e24aa);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .card h3 {
+        font-size: 18px;
+        margin-bottom: 8px;
+      }
+
+      .card p {
+        font-size: 14px;
+        color: #666;
+      }
+
+      .card:hover {
+        transform: translateY(-12px) scale(1.03);
+      }
+
+      /* ================= EXTRA SECTION ================= */
+      .extra {
+        padding: 90px 8%;
+        text-align: center;
+      }
+
+      .extra h2 {
+        font-size: 30px;
+        margin-bottom: 15px;
+      }
+
+      .extra p {
+        max-width: 700px;
+        margin: auto;
+        color: #555;
+      }
+
+      /* ================= FOOTER ================= */
+      footer {
+        background: #111;
+        color: #ccc;
+        padding: 60px 8% 30px;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 30px;
+      }
+
+      footer h4 {
+        color: #fff;
+        margin-bottom: 15px;
+      }
+
+      footer a {
+        color: #ccc;
+        text-decoration: none;
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      footer a:hover {
+        color: #ff80ab;
+      }
+
+      .social i {
+        margin-right: 10px;
+        font-size: 18px;
+      }
+
+      .copy {
+        text-align: center;
+        margin-top: 30px;
+        font-size: 13px;
+        opacity: 0.6;
+      }
+
+      /* ================= RESPONSIVE ================= */
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 30px;
+        }
+        .section-title {
+          font-size: 26px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header>
+      <div class="nav">
+        <div class="logo">
+                    <img src="assets/images/logo.png" alt="" height="90px">
+
+        </div>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="room.html">Rooms</a></li>
+          <li><a class="active" href="facilities.html">Facilities</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <h1>Our Facilities</h1>
+        <p>Feel Like Home – Safe, Clean & Comfortable Living</p>
+      </div>
+    </section>
+
+    <!-- FACILITIES -->
+    <section class="slanted-bg">
+      <h2 class="section-title">Premium Facilities</h2>
+
+      <div class="facilities">
+        <div class="card">
+          <i class="fa-solid fa-bed"></i>
+          <h3>Furnished Rooms</h3>
+          <p>Comfortable beds & peaceful space</p>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-wifi"></i>
+          <h3>High Speed Wi-Fi</h3>
+          <p>Study & work without interruption</p>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-broom"></i>
+          <h3>Daily Cleaning</h3>
+          <p>Hygienic rooms & washrooms</p>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-shield-heart"></i>
+          <h3>24×7 Security</h3>
+          <p>Safe environment for girls</p>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-utensils"></i>
+          <h3>Healthy Food</h3>
+          <p>Home-style meals</p>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-droplet"></i>
+          <h3>Hot Water</h3>
+          <p>Available all seasons</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXTRA -->
+    <section class="extra">
+      <h2>Why Choose Anjli PG?</h2>
+      <p>
+        Ahmedabad ke heart me located, working women & students ke liye ek safe
+        aur premium PG experience.
+      </p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <h4>Anjli Girls PG</h4>
+          <p>Safe • Comfortable • Homely</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="room.html">Rooms</a>
+          <a href="facilities.html">Facilities</a>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <a><i class="fa-solid fa-location-dot"></i> Ahmedabad</a>
+          <a><i class="fa-solid fa-phone"></i> +91 XXXXX XXXXX</a>
+        </div>
+        <div>
+          <h4>Follow</h4>
+          <div class="social">
+            <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="copy">© 2026 Anjli Girls PG</div>
+    </footer>
+
+    <!-- JS ANIMATION -->
+    <script>
+      const cards = document.querySelectorAll(".card");
+      const show = () => {
+        cards.forEach((card) => {
+          const top = card.getBoundingClientRect().top;
+          if (top < window.innerHeight - 80) {
+            card.style.opacity = 1;
+            card.style.transform = "translateY(0)";
+          }
+        });
+      };
+      window.addEventListener("scroll", show);
+      show();
+    </script>
+  </body>
+</html>
